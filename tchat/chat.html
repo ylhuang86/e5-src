@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<button onclick="cname(name)" style="position:absolute;right:0%">Change name</button> 
+    <div id="messages"></div>
+    <form action="" id="chat" style="position:absolute;bottom:0px">
+      <input id="m" autocomplete="off" /><button>Send</button>
+    </form>
+<script src="/socket.io/socket.io.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+<script src="/cookies.js"></script>
+<script>
+	var name="Anonymous";
+	if(getCookie("name"))
+		name=getCookie("name");
+	var socket = io();
+	$('#chat').submit(function(){
+		if(getCookie("name"))
+			name=getCookie("name");
+		socket.emit('chat message',"["+(new Date()).toLocaleTimeString()+"] "+name+" : "+$('#m').val());
+		$('#m').val('');
+		return false;
+	});
+	socket.on('chat message', function(msg){
+		$('#messages').append(msg+"<br>");
+	});
+	function cname(name)
+	{
+		name=prompt("Please enter your name");
+		write(name);
+	}
+</script>
