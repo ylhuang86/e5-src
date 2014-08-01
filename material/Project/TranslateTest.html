@@ -1,0 +1,68 @@
+<html>
+<body>
+<script src="translation.js"></script>
+<script>
+var language = document.cookie;
+if(language!="")
+	language = language.substring(9,language.length);
+else
+	language = 'chinese';
+language = Tran.setLanguage(language);
+
+var school = document.createElement('p');
+school.innerHTML = "Schule : "+Tran.getSchool(language);
+document.querySelector("body").appendChild(school);
+
+var name = document.createElement('p');
+name.innerHTML = "Name : "+Tran.getName(language);
+document.querySelector("body").appendChild(name);
+
+var book = document.createElement('p');
+book.innerHTML = "Buch : "+Tran.getBook(language);
+document.querySelector("body").appendChild(book);
+
+createChineseButton();
+createEnglishButton();
+createJapaneseButton();
+function createChineseButton()
+{
+	var chineseButton = document.createElement('input');
+	chineseButton.type = 'button';
+	chineseButton.value = '中文';
+	chineseButton.onclick = changeToChinese;
+	document.querySelector("body").appendChild(chineseButton);
+}
+function createEnglishButton()
+{
+	var englishButton = document.createElement('input');
+	englishButton.type = 'button';
+	englishButton.value = 'English';
+	englishButton.onclick = changeToEnglish;
+	document.querySelector("body").appendChild(englishButton);
+}
+function createJapaneseButton()
+{
+	var japaneseButton = document.createElement('input');
+	japaneseButton.type = 'button';
+	japaneseButton.value = '日本語';
+	japaneseButton.onclick = changeToJapanese;
+	document.querySelector("body").appendChild(japaneseButton);
+}
+function changeToChinese()
+{
+	document.cookie = "language=chinese";
+	window.location.reload(false);
+}
+function changeToEnglish()
+{
+	document.cookie = "language=english";
+	window.location.reload(false);
+}
+function changeToJapanese()
+{
+	document.cookie = "language=japanese";
+	window.location.reload(false);
+}
+</script>
+</body>
+</html>
