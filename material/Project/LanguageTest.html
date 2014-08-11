@@ -1,0 +1,131 @@
+<html>
+<head>
+	<meta charset="unicode"></meta>
+	<!-- <meta http-equiv="Content-Type" content="text/html; charset=unicode" /> -->
+</head>
+<body>
+	<script src="Language.js"></script>
+	<script src="words.js"></script>
+<script>
+var cookie = document.cookie;
+if(cookie!='')
+{
+	var temp = cookie.search("language");
+	temp = temp + "language=".length;
+	Lang.setLang(cookie.substring(temp,temp+5));
+}
+else
+Lang.setLang('en_us');
+
+var detect;
+var temp = cookie.search("detect");
+temp = temp + "detect=".length;
+
+if(cookie.substring(temp,temp+1)=='1')
+{
+	detect = true;
+	detectLanguage();
+}
+else
+	detect = false;
+
+var school = document.createElement('p');
+school.innerHTML = "Schule : "+ Lang.getWord('School');
+document.body.appendChild(school);
+
+var yeah = document.createElement('p');
+yeah.innerHTML = "Name : "+ Lang.getWord('Name');
+document.body.appendChild(yeah);
+
+var book = document.createElement('p');
+book.innerHTML = "Buch : "+ Lang.getWord('Book');
+document.body.appendChild(book);
+
+createChineseButton();
+createEnglishButton();
+createJapaneseButton();
+createDetectButton(detect);
+
+function createChineseButton()
+{
+	var chineseButton = document.createElement('input');
+	chineseButton.type = 'button';
+	chineseButton.value = '中文';
+	chineseButton.onclick = function(){changeToChinese();}
+	document.body.appendChild(chineseButton);
+}
+function createEnglishButton()
+{
+	var englishButton = document.createElement('input');
+	englishButton.type = 'button';
+	englishButton.value = 'English';
+	englishButton.onclick = function(){changeToEnglish();}
+	document.body.appendChild(englishButton);
+}
+function createJapaneseButton()
+{
+	var japaneseButton = document.createElement('input');
+	japaneseButton.type = 'button';
+	japaneseButton.value = '日本語';
+	japaneseButton.onclick = function(){changeToJapanese();}
+	document.body.appendChild(japaneseButton);
+}
+function createDetectButton(detect)
+{
+	var detectButton = document.createElement('input');
+	detectButton.type = 'button';
+	if(detect)
+	{
+		detectButton.value = 'Don\'t detect language';
+		detectButton.onclick = doNotDetect;
+	}
+	else
+	{
+		detectButton.value = 'Detect language';
+		detectButton.onclick = iWantTodetect;
+	}
+	document.body.appendChild(detectButton);
+}
+function changeToChinese()
+{
+	document.cookie = "language=zh_tw;";
+	doNotDetect();
+	window.location.reload(false);
+}
+function changeToEnglish()
+{
+	document.cookie = "language=en_us;";
+	doNotDetect();
+	window.location.reload(false);
+}
+function changeToJapanese()
+{
+	document.cookie = "language=ja_jp;";
+	doNotDetect();
+	window.location.reload(false);
+}
+function doNotDetect()
+{
+	// document.cookie = document.cookie.replace("detect=1","detect=0");
+	document.cookie = "detect=0;";
+	window.location.reload(false);
+}
+function iWantTodetect()
+{
+	if(document.cookie.search("detect=")!=-1)
+		// document.cookie = document.cookie.replace("detect=0","detect=1");
+		document.cookie = "detect=1;";
+	else
+		document.cookie = "detect=1;";
+	window.location.reload(false);
+}
+function detectLanguage()
+{
+	var lang = window.navigator.userLanguage || window.navigator.language ;		
+	var relang=lang.toLowerCase();
+	relang=relang.replace('-','_');
+	Lang.setLang(relang);
+}
+</script>
+</body>
+</html>
