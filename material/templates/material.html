@@ -1,0 +1,17 @@
+<div id="album_page">
+  {{#mfiles}}
+  <p> There are {{ mfiles.length }} mfiles in this album</p>
+  <div id="mfiles">
+      <div class="mfile">
+        <div class='mfile_holder'>
+          <img style='width: 250px; height: 250px; background-color: #fbb'
+               src="{{url}}" border="0"/></div>
+        <div class='mfile_desc'><p>{{ desc }}</p></div>
+      </div>
+  </div> <!-- #mfiles -->
+  <div style="clear: left"></div>
+  {{/mfiles}}
+  {{^mfiles}}
+      <p> This album does't have any mfiles in it, sorry.<p>
+  {{/mfiles}}
+</div> <!-- #album_page -->
