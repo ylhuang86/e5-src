@@ -78,21 +78,21 @@ function load_material_list(callback) {
     );
 };
 function load_material(material_name, page, page_size, callback) {
-	console.log("load_material");
+	//console.log("load_material");
 	var access_material;
 	fs.readFile(
 		"./users/user.json",
 		function(err,contents){
 			if(err){console.log(err);return;}
 			var tmp=material_name.toString('utf8');
-			//access_material=contents[tmp];
-			console.log(tmp);
+			contents=JSON.parse(contents);
+			access_material=contents[tmp];
+			//console.log(tmp);
 			var only_files = [];
 			
-			//var path = "materials/" + material_name + "/"+contents[tmp];	
-			var path = "materials/" + material_name + "/"+"1060";	
+			var path = "materials/" + material_name + "/"+access_material;	
 			
-			console.log(path);
+			//console.log(path);
 			fs.readdir(
 				path,
 				function (err, files) {
@@ -105,18 +105,21 @@ function load_material(material_name, page, page_size, callback) {
 						}
 						return;
 					}
-					console.log("OK");
+					//console.log("OK");
 					async.forEach(
 						files,
 						function (element, cb) {
+							console.log(path + element);
 							fs.stat(
-								path + element,
+								path +"/"+element,
 								function (err, stats) {
+									//console.log(stats.isFile());
 									if (err) {
 										cb(helpers.make_error("file_error",JSON.stringify(err)));
 										return;
 									}
 									if (stats.isFile()) {
+									//console.log("*");
 										var obj = { filename: element,desc: element };
 										only_files.push(obj);
 									}
