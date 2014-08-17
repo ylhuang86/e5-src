@@ -1,6 +1,29 @@
 {
-	"ID":"011079",
-	"Name":"Gordon",
-	"UEE1303":"1060",
-	"UEE2303":"1072"
+	"Identity":{
+		"ID":"0110789",
+		"Name":"蔡尚頤",
+		"SemesterHistory":[
+			"101a","101b"
+		]
+	},
+	"Academic":{
+		"TakenSemester":{
+			"101a":{
+				"Subject":[
+					"UEE1303",
+					"UEE2303"
+				]
+			},
+			"101b":{
+				"Subject":[
+					"UEE1303",
+					"UEE2303"
+				]
+			}	
+		},
+		"TakenSubject":{
+			"UEE1303":["1060","1061"],
+			"UEE2303":["1072","1073"]
+		}
+	}
 }

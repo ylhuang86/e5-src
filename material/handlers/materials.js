@@ -1,7 +1,8 @@
 var helpers = require('./helpers.js'),
     async = require('async'),
-    fs = require('fs');
-
+    fs = require('fs'),
+	mhelper=require('./material_helper');
+	
 exports.version = "0.1.0";
 
 exports.list_all = function (req, res) {
@@ -77,6 +78,14 @@ function load_material_list(callback) {
         }
     );
 };
+function load_material(material_name, page, page_size, callback){
+	mhelper.getSubjectList(material_name, page, page_size, callback);
+
+}
+
+
+
+/*
 function load_material(material_name, page, page_size, callback) {
 	//console.log("load_material");
 	var access_material;
@@ -148,7 +157,7 @@ function load_material(material_name, page, page_size, callback) {
 		}
     );
 	
-};
+};*/
 //get_access_material:
 //It return the folder depends on the user json-file in /users,thought I wonder it's necessity... 
 //[improve]It should not be implemented like this.
