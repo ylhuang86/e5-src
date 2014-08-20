@@ -111,7 +111,7 @@ function doNotDetect()
 function iWantTodetect()
 {
 	if(document.cookie.search("detect=")!=-1)
-		document.cookie.replace("detect=0","detect=1");
+		document.cookie = document.cookie.replace("detect=0","detect=1");
 	else
 		document.cookie = document.cookie + "detect=1;";
 	window.location.reload(false);

@@ -1,4 +1,5 @@
-window.WL_LANG.words=
+// window.WL_LANG.words=
+window.Lang.words = 
 {
 	School:
 	{

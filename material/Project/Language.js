@@ -1,6 +1,6 @@
 window.Lang = 
 {
-	support_lang:["en_us","ja_jp","zh_tw"],
+	support_lang:["en_us","zh_tw"],
 	lang_setting:"en_us",
 
 	setLang:function(language)
