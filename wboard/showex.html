@@ -1,42 +1,69 @@
 <!DOCTYPE html>
 <html>
-<body>
-  <div>
-    <button id="prev">Previous</button>
-    <button id="next">Next</button>
-    &nbsp; &nbsp;
-    <span>Page: <span id="page_num"></span> / <span id="page_count"></span></span>
-  </div>
 
-  <div>
-    <canvas id="the-canvas" style="border:1px solid black"></canvas>
-  </div>
+<head>
+	<meta charset="utf-8">
+	<script type="text/javascript" src="jsPDF/jspdf.js"></script>
+	<script type="text/javascript" src="jsPDF/jspdf.plugin.addimage.js"></script>
+	<script type="text/javascript" src="jsPDF/libs/FileSaver.js/FileSaver.js"></script>
+	<script type="text/javascript" src="jsPDF/libs/Blob.js/Blob.js"></script>
+	<script src = "http://code.jquery.com/jquery-1.11.1.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+</head>
+
+<body>
+	<div>
+		<button id="prev">Previous</button>
+		<button id="next">Next</button>
+		<button id="save">Save</button>
+		&nbsp; &nbsp;
+		<span>Page: <span id="page_num"></span> / <span id="page_count"></span></span>
+	</div>
+
+	<div>	
+		<canvas id="merge-canvas"style="position:absolute"></canvas>
+    	<canvas id="the-canvas" style="position:absolute;border:1px solid black;z-index=1"></canvas>
+		<canvas id="drawing-canvas" style="position:absolute;z-index=2"></canvas>
+	</div>
 
   <!-- Use latest PDF.js build from Github -->
-  <script src="http://mozilla.github.io/pdf.js/build/pdf.js"></script>
+	<script src="./pdfjs.js"></script>
   
-  <script>
+	<script>
     //
     // NOTE: 
     // Modifying the URL below to another server will likely *NOT* work. Because of browser
     // security restrictions, we have to use a file server with special headers
     // (CORS) - most servers don't support cross-origin browser requests.
     //
-   //var url = 'http://cdn.mozilla.net/pdfjs/tracemonkey.pdf';
+	//var url = 'http://cdn.mozilla.net/pdfjs/tracemonkey.pdf';
 	var url = './'+window.location.search.split("name=")[1];
     //
     // Disable workers to avoid yet another cross-origin issue (workers need the URL of
     // the script to be loaded, and currently do not allow cross-origin scripts)
     //
-    PDFJS.disableWorker = true;
+		PDFJS.disableWorker = true;
 
-    var pdfDoc = null,
+	var pdfDoc = null,
         pageNum = 1,
         pageRendering = false,
         pageNumPending = null,
-        scale = 0.8,
+        scale = 1,
         canvas = document.getElementById('the-canvas'),
         ctx = canvas.getContext('2d');
+    
+	/* drawing */
+	var dcanvas = document.getElementById('drawing-canvas'),
+		dctx = dcanvas.getContext('2d');
+	
+	/* merge */
+	var mcanvas = document.getElementById('merge-canvas'),
+		mctx = mcanvas.getContext('2d');
+	
+	/* record handwriting */
+	var HWRecord;
+	var socket = io();
+	
 
     /**
      * Get page info from document, resize canvas accordingly, and render page.
@@ -49,6 +76,12 @@
         var viewport = page.getViewport(scale);
         canvas.height = viewport.height;
         canvas.width = viewport.width;
+		
+		/* set draw & merge position */
+		dcanvas.height = canvas.height;
+		dcanvas.width = canvas.width;
+		mcanvas.height = canvas.height;
+		mcanvas.width = canvas.width;
 
         // Render PDF page into canvas context
         var renderContext = {
@@ -74,7 +107,7 @@
     
     /**
      * If another page rendering in progress, waits until the rendering is
-     * finised. Otherwise, executes rendering immediately.
+     * finished. Otherwise, executes rendering immediately.
      */
     function queueRenderPage(num) {
       if (pageRendering) {
@@ -92,7 +125,10 @@
         return;
       }
       pageNum--;
-      queueRenderPage(pageNum);
+	  var temp = '{"page" :'+ pageNum + ',"type":4}';
+	  socket.emit('draw',temp);
+	  return false;
+      
     }
     document.getElementById('prev').addEventListener('click', onPrevPage);
 
@@ -104,20 +140,158 @@
         return;
       }
       pageNum++;
-      queueRenderPage(pageNum);
+      var temp = '{"page" :'+ pageNum + ',"type":4}';
+	  socket.emit('draw',temp);
+	  return false;
     }
     document.getElementById('next').addEventListener('click', onNextPage);
 
     /**
      * Asynchronously downloads PDF.
      */
+	 
     PDFJS.getDocument(url).then(function (pdfDoc_) {
       pdfDoc = pdfDoc_;
       document.getElementById('page_count').textContent = pdfDoc.numPages;
-
+	
+	  /* Initial HWRecord */
+	  HWRecord = new Array(pdfDoc.numPages);
+	  for(var i=0; i<pdfDoc.numPages ;i++)
+		HWRecord[i] = new Array();
+		setTimeout('repaint()',50);
+		
       // Initial/first page rendering
       renderPage(pageNum);
+	  
+	  
+	  
     });
+	
+	/* Drawing */
+	var draw;
+	var p;
+	var dx=dcanvas.offsetLeft,dy=dcanvas.offsetTop;
+/*	
+	function md(event){
+		dctx.lineCap = "round";
+		dctx.lineWidth = 2;
+		dctx.strokeStyle = "#ff0000";
+		//var temp = '{ "Width":' + dctx.lineWidth +',"Color":"' + dctx.strokeStyle 
+		//		+ '","x":' + (event.pageX-dx) + ',"y":' + (event.pageY-dy) +',"type"=1}'
+		HWRecord[pageNum-1].push(temp);
+		dctx.moveTo(event.pageX-dx, event.pageY-dy);
+		draw = true;		
+		dctx.beginPath();
+		console.log(temp);
+	}
+
+	function mv(event){
+		if(draw){
+			dctx.lineTo(event.pageX-dx, event.pageY-dy);
+			dctx.stroke();
+			//console.log((event.pageX-dx)+" "+(event.pageY-dx));
+			var temp = '{"x":' + (event.pageX-dx) + ',"y":' + (event.pageY-dy) +',"type"=2}';
+			HWRecord[pageNum-1].push(temp);
+
+			onsole.log(temp);
+		}
+	}
+	
+	function mup(event){
+		draw = false;
+		dctx.closePath();
+		var temp = '{"type"=3}';
+		HWRecord[pageNum-1].push(temp);
+		console.log(temp);
+	}	
+	*/
+	
+    /* Save */
+    function onSave() {
+		mctx.drawImage(canvas,0,0);
+		mctx.drawImage(dcanvas,0,0);
+		var imgData=mcanvas.toDataURL("image/jpeg",1.0);
+		try{	
+			var pdf=new jsPDF();
+			pdf.addImage(imgData,'JPEG',0,0);
+			pdf.save("./new.pdf");
+			console.log("save");
+		}
+		catch(err){
+			console.log("err:"+err);
+		}
+	//      queueRenderPage(pageNum);
+    }
+    document.getElementById('save').addEventListener('click', onSave);
+
+	
+	/* Broadcast */
+	$('#drawing-canvas').on("mousedown",function(event){
+		//console.log("down");
+		var temp = '{ "Width":' + dctx.lineWidth +',"Color":"' + dctx.strokeStyle 
+				+ '","x":' + (event.pageX-dx) + ',"y":' + (event.pageY-dy) +',"type":1}';
+		socket.emit('draw',temp);
+		draw = true;		
+		return false;
+	});
+
+	$('#drawing-canvas').on("mousemove",function(event){
+		if(draw){
+			//console.log("move");
+			var temp = '{"x":' + (event.pageX-dx) + ',"y":' + (event.pageY-dy) +',"type":2}';
+			socket.emit('draw',temp);
+			return false;
+		}
+	});
+
+	$('#drawing-canvas').on("mouseup",function(event){
+		//console.log("up");
+		var temp = '{"type":3}';
+		socket.emit('draw',temp);
+		draw = false;
+		return false;
+	});
+	
+	socket.on('showdraw',function(record){
+		//console.log("get");
+		var cmd = JSON.parse(record);
+		if(cmd.type == 4){
+			pageNum = cmd.page;
+			queueRenderPage(pageNum);
+		}
+		else{
+			HWRecord[pageNum-1].push(record);
+		}
+		//console.log(record);
+	});
+	
+	function repaint(){
+		for(var i=0; i<HWRecord[pageNum-1].length ;i++){
+			var cmd = JSON.parse(HWRecord[pageNum-1][i]);
+			//console.log("draw");
+			if(cmd.type == 1){
+				//console.log("1");
+				dctx.lineCap = "round";
+				dctx.lineWidth = cmd.Width;
+				dctx.strokeStyle = cmd.Color;
+				dctx.moveTo(cmd.x, cmd.y);
+				dctx.beginPath();
+			}
+			else if(cmd.type == 2){
+				//console.log("2");
+				dctx.lineTo(cmd.x, cmd.y);
+				dctx.stroke();
+				
+			}
+			else if(cmd.type == 3){
+				//console.log("3");
+				dctx.closePath();
+			}
+		}
+		setTimeout('repaint()',500);
+	}
+	
+	
   </script>  
 </body>
 </html>
