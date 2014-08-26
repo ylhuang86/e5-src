@@ -7,6 +7,7 @@ $(function(){
 		// get material name.
         parts = window.location.href.split("/");
         var material_name = parts[5];
+		console.log(parts);
 		// Load the HTML template
         $.get("/templates/material.html", function(d){
             tmpl = d;
@@ -29,7 +30,7 @@ function massage_material(d) {
     if (d.error != null) return d;
     var obj = { mfiles: [] };
 
-    var af = d.data.material_data;
+    var af = d.data.material_contents_data;
 
     for (var i = 0; i < af.mfiles.length; i++) {
         var url = "/materials/" + af.short_name + "/" + af.mfiles[i].filename;
