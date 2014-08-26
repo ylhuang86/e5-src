@@ -16,18 +16,17 @@ var fs = require('fs');
 exports.getSubjectList=function(material_name, page, page_size, callback)
 {
 	//use waterfall to implement it
+	
 	async.waterfall([
 		//Step1. Read the user info from usersample.json	
 		function(callback){	
 			//err & contents is passed to next function
-			console.log("No1");
 			//It looks weird cause I didn't see any err passed to next function.[Discussion]
 			//Maybe the err was passed to callback directly.
 			fs.readFile("./users/user.json",callback);
 		},
 		//Step2. Get contents
 		function(contents,callback){
-			console.log("No2b");
 			contents=JSON.parse(contents);
 			//Find out accessible material direct
 			access_material=contents.Academic.TakenSubject[material_name.toString('utf8')][0];
@@ -40,15 +39,10 @@ exports.getSubjectList=function(material_name, page, page_size, callback)
 			fs.readdir(
 				path,
 			function(err,files) {
-			console.log("No4");
-			console.log(path);
-			console.log(files.toString('utf8'));
-			console.log("No4b");
 			var only_files=[];
 			async.forEach(
 				files,
 				function (element, cb) {
-					//console.log(path + element);
 					fs.stat(
 						path +"/"+element,
 						function (err, stats) {
@@ -57,8 +51,6 @@ exports.getSubjectList=function(material_name, page, page_size, callback)
 								return;
 							}
 							if (stats.isFile()) {
-								//console.log("*");
-								//console.log(stats.toString('utf8'));
 								var obj = { filename: element,desc: element };
 								only_files.push(obj);
 							}
@@ -71,18 +63,15 @@ exports.getSubjectList=function(material_name, page, page_size, callback)
 					else {
 						var ps = page_size;
 						var mfiles = only_files.splice(page * ps, ps);
-						var obj = { short_name: material_name,mfiles: mfiles };
+						//console.log(material_name + "/"+access_material);
+						var obj = { short_name:material_name + "/"+access_material,mfiles: mfiles };
 						callback(null, obj);
 					}
 				}
 			);
 		});}],
 		function(err, material_contents){
-			console.log("No5");
-			console.log(err);
-			console.log(material_contents);
 			if (err) {
-						console.log("No4a");
 						if (err.code == "ENOENT") {
 							callback(helpers.no_such_material(),null);
 						} 
@@ -91,7 +80,7 @@ exports.getSubjectList=function(material_name, page, page_size, callback)
 						}
 						return;
 					}
-			//callback(err, material_contents);
+			callback(err, material_contents);
 		}
 	);
 }

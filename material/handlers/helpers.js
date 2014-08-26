@@ -10,9 +10,16 @@ exports.make_error = function(err, msg) {
 
 
 exports.send_success = function(res, data) {
+	console.log("send_success");
     res.writeHead(200, {"Content-Type": "application/json"});
     var output = { error: null, data: data };
+	console.log(output);
     res.end(JSON.stringify(output) + "\n");
+	/*
+	console.log("*");
+	console.log(res);
+	console.log("**");
+	*/
 }
 
 
