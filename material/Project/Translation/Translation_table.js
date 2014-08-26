@@ -85,10 +85,9 @@ window.Lang.words =
 		en_us:"Password",
 		zh_tw:"系統登入密碼"
 	},
-	// Unsure
 	CmsSrvId:
 	{
-		en_us:"Content Server Id",
+		en_us:"CmsSrv ID",
 		zh_tw:"內容伺服器識別碼"
 	},
 	// Unsure
