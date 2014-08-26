@@ -10,8 +10,20 @@ var fs = require('fs'),
 
 app.get('/v1/materials.json', material_hdlr.list_all);
 app.get('/v1/materials/:material_name.json', material_hdlr.material_by_name);
-app.get('/pages/:page_name', page_hdlr.generate);
-app.get('/pages/:page_name/:sub_page', page_hdlr.generate);
+app.get('/pages/:page_name',function (req, res) {
+	console.log('/pages/:page_name');
+	console.log(req.params.page_name);
+	page_hdlr.generate(req, res);
+	});
+app.get('/pages/:page_name/:sub_page',function (req, res) {
+	console.log('/pages/:page_name/:sub_page');
+	console.log(req.params.page_name);
+	console.log(req.params.sub_page);
+	page_hdlr.generate(req, res);
+	});
+//[CAUTION] I think the following way is quite careless,
+//			but please pardon me for implementing it in this way temperately.
+app.get('/pages/:page_name/:sub_page/:sub_page', page_hdlr.generate);
 app.get('/content/:filename', function (req, res) {
     serve_static_file('content/' + req.params.filename, res);
 });
@@ -26,6 +38,7 @@ app.get('*', four_oh_four);
 
 
 function four_oh_four(req, res) {
+	console.log("404");
     res.writeHead(404, { "Content-Type" : "application/json" });
     res.end(JSON.stringify(helpers.invalid_resource()) + "\n");
 }
