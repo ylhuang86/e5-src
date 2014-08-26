@@ -31,7 +31,7 @@ exports.getSubjectList=function(material_name, page, page_size, callback)
 			//Find out accessible material direct
 			access_material=contents.Academic.TakenSubject[material_name.toString('utf8')][0];
 			//
-			var path = "materials/" + material_name + "/"+access_material;	
+			var path = "materials/" + material_name + "/"+access_material;
 			callback(null,path);
 		},
 		//use parameter path to read direct
@@ -52,6 +52,9 @@ exports.getSubjectList=function(material_name, page, page_size, callback)
 							}
 							if (stats.isFile()) {
 								var obj = { filename: element,desc: element };
+								//
+								console.log(obj.filename);
+								//
 								only_files.push(obj);
 							}
 									cb(null);
@@ -64,7 +67,8 @@ exports.getSubjectList=function(material_name, page, page_size, callback)
 						var ps = page_size;
 						var mfiles = only_files.splice(page * ps, ps);
 						//console.log(material_name + "/"+access_material);
-						var obj = { short_name:material_name + "/"+access_material,mfiles: mfiles };
+						var obj = { short_name:material_name+"/"+access_material,mfiles: mfiles };
+						console.log(obj.short_name);
 						callback(null, obj);
 					}
 				}
