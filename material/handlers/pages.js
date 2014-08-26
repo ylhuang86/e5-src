@@ -7,14 +7,11 @@ exports.version = "0.1.0";
 
 
 exports.generate = function (req, res) {
-	console.log("generate");
     var page = req.params.page_name;
-	console.log(page);
     fs.readFile(
         'basic.html',
         function (err, contents) {
             if (err) {
-				console.log("ohoh!");
                 send_failure(res, 500, err);
                 return;
             }

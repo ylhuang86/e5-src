@@ -16,9 +16,6 @@ exports.list_all = function (req, res) {
 };
 exports.material_by_name = function (req, res) {
     // get the GET params
-	//
-	console.log("material_by_name");
-	//
     var getp = req.query;
     var page_num = getp.page ? getp.page : 0;
     var page_size = getp.page_size ? getp.page_size : 1000;
@@ -34,14 +31,10 @@ exports.material_by_name = function (req, res) {
         page_size,
         function (err, material_contents) {
             if (err && err.error == "no_such_material") {
-				console.log("no~~");
                 helpers.send_failure(res, 404, err);
             }  else if (err) {
-				console.log("oh!");
                 helpers.send_failure(res, 500, err);
             } else {
-				console.log("Ya!");
-				console.log({ material_contents_data: material_contents });
 				helpers.send_success(res, { material_contents_data: material_contents });
             }
         }

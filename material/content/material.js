@@ -26,14 +26,13 @@ $(function(){
     }();
 });
 function massage_material(d) {
-	console.log("massage_material");
     if (d.error != null) return d;
     var obj = { mfiles: [] };
 
     var af = d.data.material_contents_data;
 
     for (var i = 0; i < af.mfiles.length; i++) {
-        var url = "/materials/" + af.short_name + "/" + af.mfiles[i].filename;
+        var url = af.short_name +"/"+ af.mfiles[i].filename;
         obj.mfiles.push({ url: url, desc: af.mfiles[i].filename });
     }
     return obj;
