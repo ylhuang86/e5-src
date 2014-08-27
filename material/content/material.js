@@ -7,7 +7,6 @@ $(function(){
 		// get material name.
         parts = window.location.href.split("/");
         var material_name = parts[5];
-		console.log(parts);
 		// Load the HTML template
         $.get("/templates/material.html", function(d){
             tmpl = d;

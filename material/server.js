@@ -16,9 +16,6 @@ app.get('/pages/:page_name',function (req, res) {
 app.get('/pages/:page_name/:sub_page',function (req, res) {
 	page_hdlr.generate(req, res);
 	});
-//[CAUTION] I think the following way is quite careless,
-//			but please pardon me for implementing it in this way temperately.
-app.get('/pages/:page_name/:sub_page/:sub_page', page_hdlr.generate);
 app.get('/content/:filename', function (req, res) {
     serve_static_file('content/' + req.params.filename, res);
 });
@@ -56,7 +53,6 @@ function serve_static_file(file, res) {
                 res.end();
             }
         );
-
         var ct = content_type_for_file(file);
         res.writeHead(200, { "Content-Type" : ct });
         rs.pipe(res);
@@ -69,6 +65,7 @@ function content_type_for_file (file) {
         case ".js": return "text/javascript";
         case ".css": return 'text/css';
         case '.jpg': case '.jpeg': return 'image/jpeg';
+		case ".pdf": return "application/pdf";
         default: return 'text/plain';
     }
 }
