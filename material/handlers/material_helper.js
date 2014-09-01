@@ -52,9 +52,6 @@ exports.getSubjectList=function(material_name, page, page_size, callback)
 							}
 							if (stats.isFile()) {
 								var obj = { filename: element,desc: element };
-								//
-								console.log(obj.filename);
-								//
 								only_files.push(obj);
 							}
 									cb(null);
@@ -66,7 +63,6 @@ exports.getSubjectList=function(material_name, page, page_size, callback)
 					else {
 						var ps = page_size;
 						var mfiles = only_files.splice(page * ps, ps);
-						//console.log(material_name + "/"+access_material);
 						var obj = { short_name:material_name+"/"+access_material,mfiles: mfiles };
 						console.log(obj.short_name);
 						callback(null, obj);
@@ -88,7 +84,6 @@ exports.getSubjectList=function(material_name, page, page_size, callback)
 		}
 	);
 }
-function load_UserData(){
-}
+
 function show_TakenSemester(){
 }

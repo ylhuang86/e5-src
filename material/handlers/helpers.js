@@ -1,3 +1,4 @@
+var fs=require('fs'); 
 
 exports.version = '0.1.0';
 
@@ -32,4 +33,13 @@ exports.no_such_material = function() {
     return exports.make_error("no_such_material",
                               "The specified album does not exist");
 }
-
+//
+exports.load_User_Data=function (callback){
+	//temperately implemented in this way
+	fs.readFile("./users/user.json",function(err,file){
+		if(err)return;
+		var userdata=JSON.parse(file);
+		callback(userdata);
+	});
+}
+//

@@ -10,8 +10,10 @@ $(function(){
         $.get("/templates/home.html", function(d){
             tmpl = d;
         });
+
+ 
         // Retrieve the server data and then initialise the page  
-        $.getJSON("/subjects.json", function (d) {
+        $.getJSON("/v1/materials.json", function (d) {
             $.extend(tdata, d.data);
         });
  
