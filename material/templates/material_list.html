@@ -1,0 +1,13 @@
+<div id="material_list">
+  <p> There are {{ materials.length }} lecture</p>
+  <ul id="materials">
+    {{#materials}}
+      <li class="material">
+        <a href='http://localhost:8080/pages/material/{{name}}'>{{name}}</a>
+      </li>
+    {{/materials}}
+    {{^materials}}
+      <li> Sorry, there are currently no materials </li>
+    {{/materials}}
+  </ul>
+</div>

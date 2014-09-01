@@ -1,13 +1,13 @@
-<div id="album_list">
-  <p> There are {{ materials.length }} lecture</p>
-  <ul id="materials">
-    {{#materials}}
-      <li class="material">
-        <a href='http://localhost:8080/pages/material/{{name}}'>{{name}}</a>
+<div id="subjects_list">
+  <p> There are {{ subjects.length }} subjects</p>
+  <ul id="subjects">
+    {{#subjects}}
+      <li class="subject">
+        <a href='http://localhost:8080/pages/subject/{{name}}'>{{name}}</a>
       </li>
-    {{/materials}}
-    {{^materials}}
-      <li> Sorry, there are currently no materials </li>
-    {{/materials}}
+    {{/subjects}}
+    {{^subjects}}
+      <li> Sorry, there are currently no subjects </li>
+    {{/subjects}}
   </ul>
 </div>

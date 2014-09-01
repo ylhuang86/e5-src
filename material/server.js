@@ -5,11 +5,13 @@ var app = express();
 var fs = require('fs'),
     path = require('path'),
     material_hdlr = require('./handlers/materials.js'),
+	subject_hdlr =require('./handlers/subjects.js');
     page_hdlr = require('./handlers/pages.js'),
     helpers = require('./handlers/helpers.js');
 
 app.get('/v1/materials.json', material_hdlr.list_all);
 app.get('/v1/materials/:material_name.json', material_hdlr.material_by_name);
+app.get('/subjects.json', subject_hdlr.list_subject_list);
 app.get('/pages/:page_name',function (req, res) {
 	page_hdlr.generate(req, res);
 	});
@@ -21,17 +23,20 @@ app.get('/content/:filename', function (req, res) {
 });
 app.get('/materials/:permanent_ID/:current_ID/:filename', function (req, res) {
 	var url='materials/'+req.params.permanent_ID+"/"+req.params.current_ID+"/"+req.params.filename;
-	console.log(url);
     serve_static_file(url, res);
 });
 app.get('/templates/:template_name', function (req, res) {
     serve_static_file("templates/" + req.params.template_name, res);
 });
+app.get('/syllabus/:permanent_ID/:syllabus_name',function (req, res) {
+	var url="syllabus/"+req.params.permanent_ID+"/"+req.params.syllabus_name;
+	serve_static_file(url, res);
+});
+
 app.get('*', four_oh_four);
 
 
 function four_oh_four(req, res) {
-	console.log("404");
     res.writeHead(404, { "Content-Type" : "application/json" });
     res.end(JSON.stringify(helpers.invalid_resource()) + "\n");
 }
