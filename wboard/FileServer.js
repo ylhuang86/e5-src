@@ -4,7 +4,7 @@ var app = express();
 var bodyParser = require('body-parser');
 var http = require('http').createServer(app);
 var io = require('socket.io')(http);
-
+//var fs = require('fs');
 
 
 app.configure(function(){
@@ -81,17 +81,18 @@ io.on('connection', function(socket){
 });
 
 /* Memo - By Eggy - undone */
-/*app.post('', function (req, res){
+app.post('/memo', function (req, res){
 	//res.end('hello world');
-	console.log(req.body.entry);
-	var buf=new Buffer(req.body.entry.length+1);
-	buf.write(req.body.entry);
+	//console.log(req.body.fileContent);
+	var content = req.body.fileContent;
+	var buf=new Buffer(content.length+1);
+	buf.write(req.body.fileContent);
 	fs.open('./temp.txt','w',function(err,fd){
 		if (err) {
 			console.log("ERROR: " + err.code+ " (" + err.message + ")");
 			return;
 		}
-		fs.write(fd,buf,0,req.body.entry.length,null,function(err, written, buffer){
+		fs.write(fd,buf,0,content.length,null,function(err, written, buffer){
 			if (err) {
 				console.log("ERROR: " + err.code+ " (" + err.message + ")");
 				return;
@@ -102,7 +103,7 @@ io.on('connection', function(socket){
 		});
 	});
 });
-*/
+
 
 http.listen(8800);
 
