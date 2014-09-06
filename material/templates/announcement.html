@@ -1,0 +1,12 @@
+<div>
+{{#userInfo}}
+	<p>User : {{name}}</p>
+	<p></p>
+{{/userInfo}}
+{{^userInfo}}
+	<p>Some error occurred.Please try again.</p>
+{{/userInfo}}
+<p>Please edit:</p>
+<input type="text" id="announce_content" value="" /> 
+<input type="button" value="search" id="search" />
+</div>

@@ -1,13 +1,6 @@
 /*
 	Author: Shang-Yi Tsai 
 	Module : To get academic data according to passed user data
-	About : Together with usersample.json 
-	Date : 2014/08/14
-	[Done]
-	1.
-	[Unfinished]
-	1.Waiting for rewrote into module form..
-	2.
 */
 var async = require('async');
 var fs = require('fs');
@@ -83,7 +76,4 @@ exports.getSubjectList=function(material_name, page, page_size, callback)
 			callback(err, material_contents);
 		}
 	);
-}
-
-function show_TakenSemester(){
 }

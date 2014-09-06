@@ -1,17 +1,20 @@
-
+                                                                       
 var express = require('express');
 var app = express();
 
 var fs = require('fs'),
     path = require('path'),
     material_hdlr = require('./handlers/materials.js'),
-	subject_hdlr =require('./handlers/subjects.js');
+	subject_hdlr =require('./handlers/subjects.js'),
+	syllabus_hdlr=require('./handlers/syllabus.js'),
+	announcement_hdlr=require('./handlers/announcement.js'),
     page_hdlr = require('./handlers/pages.js'),
     helpers = require('./handlers/helpers.js');
 
 app.get('/v1/materials.json', material_hdlr.list_all);
 app.get('/v1/materials/:material_name.json', material_hdlr.material_by_name);
 app.get('/subjects.json', subject_hdlr.list_subject_list);
+app.get('/announcement.json', announcement_hdlr.getUserInfo);
 app.get('/pages/:page_name',function (req, res) {
 	page_hdlr.generate(req, res);
 	});
@@ -22,16 +25,27 @@ app.get('/content/:filename', function (req, res) {
     serve_static_file('content/' + req.params.filename, res);
 });
 app.get('/materials/:permanent_ID/:current_ID/:filename', function (req, res) {
-	var url='materials/'+req.params.permanent_ID+"/"+req.params.current_ID+"/"+req.params.filename;
-    serve_static_file(url, res);
+	var url="materials/"+req.params.permanent_ID+"/"+req.params.current_ID+"/"+req.params.filename;
+    serve_static_file(url,res);
+});
+/*
+//It shouldn't be implemented in this way since the user may had taken the subject for several time,
+//so there would be multi current ID. 
+app.get('/syllabus/:permanent_ID/:current_ID',function (req, res) {
+	var url="syllabus/"+req.params.permanent_ID+"/"+req.params.current_ID;
+	serve_static_file(url,res);
+}); 
+*/
+app.get('/syllabus/:permanent_ID',function (req, res) {
+	syllabus_hdlr.load_syllabus(req,res,serve_static_file);
+});
+app.get('/announcement/:permanent_ID',function (req, res) {
+	announcement_hdlr.getAnnouncement(req,res,serve_static_file);
 });
 app.get('/templates/:template_name', function (req, res) {
     serve_static_file("templates/" + req.params.template_name, res);
 });
-app.get('/syllabus/:permanent_ID/:syllabus_name',function (req, res) {
-	var url="syllabus/"+req.params.permanent_ID+"/"+req.params.syllabus_name;
-	serve_static_file(url, res);
-});
+
 
 app.get('*', four_oh_four);
 
