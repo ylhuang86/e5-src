@@ -13,8 +13,8 @@ var fs = require('fs'),
 
 app.get('/v1/materials.json', material_hdlr.list_all);
 app.get('/v1/materials/:material_name.json', material_hdlr.material_by_name);
-app.get('/subjects.json', subject_hdlr.list_subject_list);
-app.get('/announcement.json', announcement_hdlr.getUserInfo);
+//app.get('/subjects.json', subject_hdlr.list_subject_list);
+//app.get('/announcement.json', announcement_hdlr.getAnnouncement);
 app.get('/pages/:page_name',function (req, res) {
 	page_hdlr.generate(req, res);
 	});
@@ -39,8 +39,11 @@ app.get('/syllabus/:permanent_ID/:current_ID',function (req, res) {
 app.get('/syllabus/:permanent_ID',function (req, res) {
 	syllabus_hdlr.load_syllabus(req,res,serve_static_file);
 });
+//Called by announcement_hdlr.getAnnouncement,return a object with single property 
+//which contains all announce in the curentID folder. 
 app.get('/announcement/:permanent_ID',function (req, res) {
-	announcement_hdlr.getAnnouncement(req,res,serve_static_file);
+	console.log("!!");
+	announcement_hdlr.listAnnouncement(req, res);
 });
 app.get('/templates/:template_name', function (req, res) {
     serve_static_file("templates/" + req.params.template_name, res);
@@ -80,11 +83,11 @@ function serve_static_file(file, res) {
 function content_type_for_file (file) {
     var ext = path.extname(file);
     switch (ext.toLowerCase()) {
-        case '.html': return "text/html";
-        case ".js": return "text/javascript";
-        case ".css": return 'text/css';
+        case '.html': return 'text/html';
+        case '.js': return 'text/javascript';
+        case '.css': return 'text/css';
         case '.jpg': case '.jpeg': return 'image/jpeg';
-		case ".pdf": return "application/pdf";
+		case '.pdf': return 'application/pdf';
         default: return 'text/plain';
     }
 }

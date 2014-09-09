@@ -6,14 +6,15 @@ $(function(){
     var initPage = function() {
 		// get material name.
         parts = window.location.href.split("/");
-        var material_name = parts[5];
+        var PermanentID = parts[5];
 		// Load the HTML template
         $.get("/templates/announcement.html", function(d){
             tmpl = d;
         });
 		// Retrieve the server data and then initialise the page  
-		$.get("/announcement.json",function(d){
-			
+		$.get("/announcement/"+PermanentID,function(d){
+			var data=massage_announce(d);
+			$.extend(tdata,data);
 		});
 		// When AJAX calls are complete parse the template 
         // replacing mustache tags with vars
@@ -23,3 +24,16 @@ $(function(){
         })    
     }();
 });
+
+function massage_announce(d) {
+    if (d.error != null) return d;
+    var obj = { announce: [] };
+
+    var af = d.data.announce_data;
+
+    for (var i = 0; i < af.announce.length; i++) {
+        var url = af.short_name +"/"+ af.announce[i].name;
+        obj.announce.push({ url: url, desc: af.announce[i].name });
+    }
+    return obj;
+}

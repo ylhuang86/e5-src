@@ -1,12 +1,12 @@
 <div>
-{{#userInfo}}
-	<p>User : {{name}}</p>
-	<p></p>
-{{/userInfo}}
-{{^userInfo}}
+<h3>User:{{user_name}}</h3>
+<h3>Identity:{{identity}}</h3>
+{{#announce}}
+	
+	<a href='http://localhost:8080/announce/{{url}}'>{{desc}}</a><br>
+	
+{{/announce}}
+{{^announce}}
 	<p>Some error occurred.Please try again.</p>
-{{/userInfo}}
-<p>Please edit:</p>
-<input type="text" id="announce_content" value="" /> 
-<input type="button" value="search" id="search" />
+{{/announce}}
 </div>
