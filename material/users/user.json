@@ -4,7 +4,8 @@
 		"Name":"蔡尚頤",
 		"SemesterHistory":[
 			"101a","101b"
-		]
+		],
+		"Identity":"Student"
 	},
 	"Academic":{
 		"TakenSemester":{

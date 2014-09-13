@@ -1,7 +1,3 @@
-/*
-	Author: Shang-Yi Tsai 
-	Module : To get academic data according to passed user data
-*/
 var async = require('async');
 var fs = require('fs');
 //method : Get info of user's subject name according to the identity info.

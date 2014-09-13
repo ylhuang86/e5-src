@@ -42,14 +42,14 @@ app.get('/syllabus/:permanent_ID',function (req, res) {
 //Called by announcement_hdlr.getAnnouncement,return a object with single property 
 //which contains all announce in the curentID folder. 
 app.get('/announcement/:permanent_ID',function (req, res) {
-	console.log("!!");
 	announcement_hdlr.listAnnouncement(req, res);
 });
 app.get('/templates/:template_name', function (req, res) {
     serve_static_file("templates/" + req.params.template_name, res);
 });
-
-
+app.get('/announce/:permanent_ID/:current_ID/:filename',function(req,res){
+	announcement_hdlr.showAnnouncement(req,res);
+});
 app.get('*', four_oh_four);
 
 

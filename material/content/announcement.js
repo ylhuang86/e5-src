@@ -27,12 +27,10 @@ $(function(){
 
 function massage_announce(d) {
     if (d.error != null) return d;
-    var obj = { announce: [] };
-
-    var af = d.data.announce_data;
-
+	var af = d.data.announce_data;
+	var obj = { announce: [],user_name:af.user_name,identity:af.identity};
     for (var i = 0; i < af.announce.length; i++) {
-        var url = af.short_name +"/"+ af.announce[i].name;
+        var url = af.short_name+"/"+ af.announce[i].name;
         obj.announce.push({ url: url, desc: af.announce[i].name });
     }
     return obj;

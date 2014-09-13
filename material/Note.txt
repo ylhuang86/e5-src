@@ -1,0 +1,3 @@
+﻿運用DB儲存課程教材名稱，可以減少讀取次數(readDir)，以此類推
+
+announce content 用 json ?
