@@ -1,0 +1,38 @@
+[content]
+	JQuery.
+	
+[handlers]
+
+[announcement]
+	檔案資料夾:以永久課號為子目錄名稱分類，該子目錄內以當期課號為課綱檔名分類(檔案類型為txt)。
+	
+[materials]
+	檔案資料夾:以永久課號為子目錄名稱分類，該子目錄內以當期課號為目錄名稱放置教材。
+	
+[node_modules]
+	檔案資料夾:Node.js modules.
+	
+[subject_detail]
+	預留功能:以課號取得該課程詳細資料，諸如必選修、學分數、課程名稱
+	
+[syllabus]
+	檔案資料夾:以永久課號為子目錄名稱分類，該子目錄內以當期課號為課綱檔名分類(檔案類型為pdf)。
+	
+[templates]
+	網頁骨架，藉由content目錄下的js程式檔填上適當的頁面內容。
+	
+[user]
+	預留功能:暫時替代data base儲存使用者資訊。
+	
+
+[用法]
+//
+http://localhost:8080/pages/material/ +永久課號 ，server會根據使用者資訊取得對應的當期課號，顯示該課程之教材名單
+例如:  http://localhost:8080/pages/material/UEE1303
+//
+http://localhost:8080/syllabus/  +永久課號 ，server會根據使用者資訊取得對應的當期課號，並回傳課綱(pdf)。
+例如:  http://localhost:8080/syllabus/UEE1303
+//
+http://localhost:8080/pages/announcement + 永久課號 ，server會根據使用者資訊取得對應的當期課號的公告資訊
+例如:  http://localhost:8080/pages/announcement/UEE1303
+//

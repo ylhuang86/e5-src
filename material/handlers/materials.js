@@ -42,7 +42,7 @@ exports.material_by_name = function (req, res) {
 };
 function load_material_list(callback) {
     // we will just assume that any directory in our 'materials'
-    // subfolder is an material.
+    // sub-folder is an material.
     fs.readdir(
         "materials",
         function (err, files) {

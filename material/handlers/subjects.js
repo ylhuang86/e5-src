@@ -1,4 +1,3 @@
-//subjects.js
 var helpers = require('./helpers.js');
 var async = require('async');
 

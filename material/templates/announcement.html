@@ -1,0 +1,12 @@
+<div>
+<h3>User:{{user_name}}</h3>
+<h3>Identity:{{identity}}</h3>
+{{#announce}}
+	
+	<a href='http://localhost:8080/announce/{{url}}'>{{desc}}</a><br>
+	
+{{/announce}}
+{{^announce}}
+	<p>Some error occurred.Please try again.</p>
+{{/announce}}
+</div>

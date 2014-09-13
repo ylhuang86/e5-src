@@ -1,0 +1,11 @@
+{
+	"UEE1303":{
+		"Lecture":{
+			"CY Tsai":"00000"
+		},
+		"TA":{
+			"Lence Huang":"1234567",
+			"Gordon Tsai":"0110789"
+		}
+	}
+}

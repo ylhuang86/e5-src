@@ -12,7 +12,7 @@ exports.make_error = function(err, msg) {
 
 exports.send_success = function(res, data) {
     res.writeHead(200, {"Content-Type": "application/json"});
-    var output = { error: null, data: data };
+	var output = { error: null, data: data };
     res.end(JSON.stringify(output) + "\n");
 }
 
@@ -35,7 +35,7 @@ exports.no_such_material = function() {
 }
 //
 exports.load_User_Data=function (callback){
-	//temperately implemented in this way
+	//[Discussion]temperately implemented in this way,it actually should be done by DB & cookie
 	fs.readFile("./users/user.json",function(err,file){
 		if(err)return;
 		var userdata=JSON.parse(file);
