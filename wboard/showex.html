@@ -20,12 +20,29 @@
 		<span>Page: <span id="page_num"></span> / <span id="page_count"></span></span>
 	</div>
 
+	<!-- show PDF -->
 	<div>	
 		<canvas id="merge-canvas"style="position:absolute"></canvas>
     	<canvas id="the-canvas" style="position:absolute;border:1px solid black;z-index=1"></canvas>
 		<canvas id="drawing-canvas" style="position:absolute;z-index=2"></canvas>
 	</div>
-
+	
+	<!-- Painting tool -->
+	<div id="footer" style="position:absolute;bottom:20px;">
+		<label id="blue" style="background-color:#0000FF;" onclick="changeColor(event)"}>&nbsp; &nbsp; &nbsp;</label>
+		<label id="light-blue" style="background-color:#00FFFF;" onclick="changeColor(event)">&nbsp; &nbsp; &nbsp;</label>
+		<label id="purple" style="background-color:#7700BB;" onclick="changeColor(event)">&nbsp; &nbsp; &nbsp;</label>
+		<label id="red" style="background-color:#FF0000;" onclick="changeColor(event)">&nbsp; &nbsp; &nbsp;</label>
+		<label id="pink" style="background-color:#FF88C2;" onclick="changeColor(event)">&nbsp; &nbsp; &nbsp;</label>
+		<label id="orange" style="background-color:#FFBB00;" onclick="changeColor(event)">&nbsp; &nbsp; &nbsp;</label>
+		<label id="yellow" style="background-color:#FFFF00;" onclick="changeColor(event)">&nbsp; &nbsp; &nbsp;</label>
+		<label id="green" style="background-color:#00FF00;" onclick="changeColor(event)">&nbsp; &nbsp; &nbsp;</label>
+		<label id="dark-green" style="background-color:#227700;" onclick="changeColor(event)">&nbsp; &nbsp; &nbsp;</label>
+		<label id="black" style="background-color:#000000;" onclick="changeColor(event)"}>&nbsp; &nbsp; &nbsp;</label>
+		<label id="white" style="background-color:#FFFFFF;border:black 1px solid" onclick="changeColor(event)"}>&nbsp; &nbsp; &nbsp;</label>
+		<button id="undo" onclick="Undo(event)">Undo!</label>
+	</div>
+	
   <!-- Use latest PDF.js build from Github -->
 	<script src="./pdfjs.js"></script>
   
@@ -60,6 +77,7 @@
 	var mcanvas = document.getElementById('merge-canvas'),
 		mctx = mcanvas.getContext('2d');
 	
+	var toolbox = document.getElementById('footer');
 	/* record handwriting */
 	var HWRecord;
 	var socket = io();
@@ -82,6 +100,7 @@
 		dcanvas.width = canvas.width;
 		mcanvas.height = canvas.height;
 		mcanvas.width = canvas.width;
+		toolbox.position = dcanvas.offsetTop+canvas.height;+100;
 
         // Render PDF page into canvas context
         var renderContext = {
@@ -224,11 +243,12 @@
     }
     document.getElementById('save').addEventListener('click', onSave);
 
-	
+	var colorNow = dctx.strokeStyle;
+	var widthNow = dctx.lineWidth;
 	/* Broadcast */
 	$('#drawing-canvas').on("mousedown",function(event){
 		//console.log("down");
-		var temp = '{ "Width":' + dctx.lineWidth +',"Color":"' + dctx.strokeStyle 
+		var temp = '{ "Width":' + widthNow +',"Color":"' + colorNow 
 				+ '","x":' + (event.pageX-dx) + ',"y":' + (event.pageY-dy) +',"type":1}';
 		socket.emit('draw',temp);
 		draw = true;		
@@ -266,6 +286,7 @@
 	});
 	
 	function repaint(){
+		dctx.clearRect(0,0,dcanvas.height,dcanvas.width);
 		for(var i=0; i<HWRecord[pageNum-1].length ;i++){
 			var cmd = JSON.parse(HWRecord[pageNum-1][i]);
 			//console.log("draw");
@@ -288,11 +309,29 @@
 				dctx.closePath();
 			}
 		}
-		setTimeout('repaint()',500);
+		setTimeout('repaint()',50);
 	}
 	
+	function changeColor(event){
+		var object = event.currentTarget;
+		colorNow = object.style.backgroundColor;
+		//console.log("click color"+object.style.backgroundColor+"\n"+dctx.strokeStyle);
+	}
+	
+	function Undo(event){
+		HWRecord[pageNum-1].pop();
+		var len = HWRecord[pageNum-1].length;
+		var cmd = JSON.parse(HWRecord[pageNum-1][len-1])
+		while(cmd.type != 3){
+			HWRecord[pageNum-1].pop();
+			len = HWRecord[pageNum-1].length;
+			cmd = JSON.parse(HWRecord[pageNum-1][len-1]);
+		}
+		//console.log("return "+HWRecord[pageNum-1].length);
+	}
 	
   </script>  
 </body>
 </html>
+
 
