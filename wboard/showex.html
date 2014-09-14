@@ -229,16 +229,9 @@
     function onSave() {
 		mctx.drawImage(canvas,0,0);
 		mctx.drawImage(dcanvas,0,0);
-		var imgData=mcanvas.toDataURL("image/jpeg",1.0);
-		try{	
-			var pdf=new jsPDF();
-			pdf.addImage(imgData,'JPEG',0,0);
-			pdf.save("./new.pdf");
-			console.log("save");
-		}
-		catch(err){
-			console.log("err:"+err);
-		}
+		var imgData=mcanvas.toDataURL();
+		//console.log(imgData);
+		$.post("save",{tmp : imgData });
 	//      queueRenderPage(pageNum);
     }
     document.getElementById('save').addEventListener('click', onSave);
