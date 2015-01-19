@@ -1,0 +1,10 @@
+1. 先用npm install，在電腦上打開mongod.exe，
+再node create_account.js，
+這時建立好一個account，帳號為0110001，密碼abc
+
+2. node mongodb.js後，用瀏覽器上localhost:8080或者直接點開login.html，
+就可以用剛剛的帳號密碼登入
+
+3. 如果想要建立帳號密碼，
+在登入的時候打上自己想要的帳號密碼就會幫你建立，
+最後，想要刪除所有的帳號密碼就node delete_account.js

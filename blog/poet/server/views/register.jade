@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  br
+  h2註冊新帳號
+  form(action="http://localhost:8080/register" method="post")
+    帳號：
+    br
+    input(type="text" name = "account" id="account")
+    br
+    密碼：
+    br
+    input(type="password" name = "password" id="password")
+    br
+    確認密碼
+    br
+    input(type="password" name = "password-repeat" id="password-repeat")
+    br
+    電子信箱：
+    br
+    input(type="text" name = "email")
+    br
+    input(type="submit" value = "註冊")

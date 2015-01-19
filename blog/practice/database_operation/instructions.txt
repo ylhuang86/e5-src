@@ -1,0 +1,6 @@
+使用方式：
+1. 先把mongod開起來，然後在這個資料夾下command：node generate.js
+他會先在你的電腦裡面開一個資料庫
+
+2. 下command：node add_account.js
+把data.js裡面存的JSON存到剛開的資料庫裡

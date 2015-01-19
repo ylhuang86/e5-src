@@ -1,0 +1,11 @@
+{
+  "name": "Database-Connection",
+  "description": "Try to use a node.js application to connect a MongoDB server",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "express": "3.x",
+    "async": "0.1.x",
+    "mongodb": "1.2.x"
+  }
+}

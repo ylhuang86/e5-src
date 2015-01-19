@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  br
+  h2發表文章
+  form(method="post")
+    標題：
+    br
+    input(type="text" name = "title")
+    br
+    標籤：
+    br
+    input(type="text" name = "tag1")
+    input(type="text" name = "tag2")
+    input(type="text" name = "tag3")
+    br
+    正文：
+    br
+    textarea(name = "post" style="height: 200px; width: 400px")
+    br
+    input(type="submit" value = "發表")
+

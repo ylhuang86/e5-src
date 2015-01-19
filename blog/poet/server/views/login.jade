@@ -1,0 +1,33 @@
+doctype html
+html
+  head
+    title= 'Blog'
+    meta(charset='utf-8')
+    link(rel='stylesheet', href='/css/bootstrap.css')
+  body
+    .navbar.navbar-fixed-top
+      .navbar-inner
+        .container
+          a.brand(href='/') Blog
+    .wrap
+      .container
+        .column
+            .span3
+            dir(width="100px" float: left)
+            .span6
+            br
+            h2登入
+            arcticle
+                form(method="post")
+                    帳號：
+                    br
+                    input(type="text" name = "account")
+                    br
+                    br
+                    密碼：
+                    br
+                    input(type="password" name = "password")
+                    br
+                    br
+                    input(type="submit" value = "註冊")
+            
