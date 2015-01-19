@@ -1,0 +1,24 @@
+<div id="file_page">
+<fieldset>
+  <h4> There are {{ mfiles.length }} files in this subject</h4>
+</fieldset>
+<br>
+<fieldset>
+  {{#mfiles}}
+  <div id="mfiles">
+      <div class="mfile">
+        <div class='mfile_holder'>
+        <a href='http://140.113.121.10:8080/materials/{{url}}'>{{ desc }}</a></div >
+      </div>
+  </div> <!-- #mfiles -->
+  <div style="clear: left"></div>
+  {{/mfiles}}
+  {{^mfiles}}
+      <p> This subject does't have any files in it, sorry.<p>
+  {{/mfiles}}
+ </fieldset>
+ <br>
+  {{#Info}}
+ <center><img src="http://140.113.121.10:8080/materials/{{IconURL}}" width="600" height="800" border="2"></center>
+  {{/Info}}
+</div> <!-- #file_page -->

@@ -1,0 +1,2 @@
+
+JSON.parse(content):content can't be JSON type.
