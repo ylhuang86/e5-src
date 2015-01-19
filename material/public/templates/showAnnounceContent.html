@@ -1,0 +1,47 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html" charset="utf-8"/>
+		<title>{{subject}}</title>
+	</head>
+	<body onload="showTime()">
+		<div>
+			<form action="http://140.113.121.10:8080/announce/" method="post">
+			<fieldset>
+				<center>
+					<label for="clock">現在時間</label>
+					<div name="clock" id="clock"></div>
+				</center>
+			</fieldset>
+			<br>
+			<center>
+				<textarea name="content" style="width:1000px;height:500px;">{{content}}</textarea>
+			</center>
+			<br>
+			<center>
+				<input type="reset" style="font-size:30px" value="取消">
+				<input type="submit" style="font-size:30px" value="送出">
+			</center>
+			</form>
+		</div>
+	</body>
+</html>
+<script>
+	function showTime(){
+		var theTime=new Date();
+		var h=theTime.getHours();
+		var m=theTime.getMinutes();
+		var s=theTime.getSeconds();
+		h=beautification(h);
+		m=beautification(m);
+		s=beautification(s);
+		document.getElementById("clock").innerHTML = h+":"+m+":"+s;
+		var t = setTimeout(function(){showTime()},500);
+	}
+	function beautification(item){
+		if (item<10) {item = "0" + item}; 
+		return item;
+	}
+</script>
+ 
+  
+ 

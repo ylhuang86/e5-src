@@ -1,0 +1,17 @@
+<div>
+<fieldset>
+	<h3>User:{{user_name}}</h3>
+	<h3>Identity:{{identity}}</h3>
+</fieldset>
+<br>
+<fieldset>
+{{#announce}}
+	
+	<a href='http://140.113.121.10:8080/announce/{{url}}'>{{desc}}</a><br>
+	
+{{/announce}}
+{{^announce}}
+	<p>Some error occurred.Please try again.</p>
+{{/announce}}
+</fieldset>
+</div>
