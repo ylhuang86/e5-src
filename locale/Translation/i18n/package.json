@@ -1,0 +1,10 @@
+{
+	"name":"i18n_Test",
+	"description":"Test for i18n",
+	"version":"0.5.0",
+	"dependencies":
+	{
+		"express":"*",
+		"async":"*"
+	}
+}
