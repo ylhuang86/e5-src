@@ -63,7 +63,7 @@ exports.createAnnounce=function(req,res){
 	sec=beautification(sec);
 	var fileName=""+theTime.getFullYear()+month+date+hour+min+sec;
 	
-	var url="../public/announce/"+req.params.permanent_ID+"/"+req.params.current_ID+"/"+fileName;
+	var url="../public/announce/"+req.params.permanent_ID+"/"+req.params.current_ID+"/"+fileName+".txt";
 	fs.writeFile(url,req.body.content);
 	res.end("Save");
 };
