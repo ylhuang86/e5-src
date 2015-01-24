@@ -1,0 +1,78 @@
+<html>
+ <body>
+ Grading
+<select id="mySelect" size="1">
+  <option id = percentage value = 0>Percentage</option>
+  <option id = passorfail value = 1>P/F</option>
+  <option id = rank value = 2>rank</option>
+</select>
+
+<button  onclick = "showtype()" >show</button>
+</br>
+total score :
+<input type = "text" id = totalscore >
+<button onclick = "inputtotalscore()">submit</button>
+</br>
+<p id = gradingtype>gradingtype:</p> 
+<p id = number>number:</p>
+<p id = total>totalscore:</p>
+ </br>
+
+ <script>
+ function showtype()
+ {
+	var x = document.getElementById("mySelect").value
+	var y = parseInt(x)
+	var z = "gradingtype : "
+	
+	switch(y)
+	{
+	case 0:
+	document.getElementById("gradingtype").innerHTML = z+"percentage"
+	
+	break;
+	case 1:
+	document.getElementById("gradingtype").innerHTML = z+"P/F"
+	
+	break;
+	case 2:
+	document.getElementById("gradingtype").innerHTML = z+"rank"
+	
+	break;
+	default:
+	document.getElementById("gradingtype").innerHTML = z+"default"
+	
+	}
+	z = "number :"
+	document.getElementById("number").innerHTML = z+x
+ }
+ 
+ function inputtotalscore(){
+ var x = document.getElementById("totalscore").value;
+
+ 
+ var a = document.getElementById("mySelect").value
+	var b = parseInt(a)
+	switch(b)
+	{
+	case 0:
+	var y =  "percentage"
+	break;
+	case 1:
+	var y ="P/F"
+	break;
+	case 2:
+	var y ="rank"
+	break;
+	default:
+	var y ="default"
+	}
+	
+  document.getElementById("total").innerHTML = "totalscore:" + x;
+ 
+ 
+ }
+ 
+ </script>
+ </body>
+ </html>

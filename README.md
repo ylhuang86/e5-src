@@ -1,4 +1,4 @@
-e5-src
+e6-src
 ======
 This is our source tree...
 
@@ -9,3 +9,4 @@ userdb/		- tony
 vchat/ 		- Edgar
 wboard/		- XiaoLes
 course_src/ - Gordon
+score/		- Eric

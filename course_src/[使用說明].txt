@@ -1,0 +1,2 @@
+course_src>server>app_course_src.js  //啟動server
+瀏覽器輸入:http://localhost:8080/pages/course
