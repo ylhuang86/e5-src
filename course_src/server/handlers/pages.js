@@ -21,7 +21,10 @@ exports.generate = function (req, res) {
             contents = contents.toString('utf8');
             // replace page name, and then dump to output.
 			//[Discussion]
-            contents = contents.replace('{{PAGE_NAME}}', sub_page);
+			if(sub_page!=undefined)
+				contents = contents.replace('{{PAGE_NAME}}', sub_page);
+			else
+				contents = contents.replace('{{PAGE_NAME}}', page);
             contents = contents.replace('{{PAGE_NAME}}', page);
 			//
             res.writeHead(200, { "Content-Type": "text/html" });
