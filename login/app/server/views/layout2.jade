@@ -1,0 +1,43 @@
+doctype 5
+html
+	head
+		title E-Campus 6 | NCTU		
+		meta(charset='utf-8')
+		meta(name='description', content='一個全新的線上教學平台，E6！')	
+		link(rel='stylesheet', href='/vendor/bootstrap.min.css')
+		link(rel='stylesheet', href='/css/style.css')
+		link(rel='stylesheet', href='//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css')
+		link(rel='shortcut icon', href='http://cdn.flaticon.com/png/256/42912.png')
+		
+	block content
+	div.navbar.navbar-fixed-top
+		div.navbar-default
+			div.container
+				ul#global-nav.nav.pull-left
+					a(href='main').brand#main E-Campus 6
+					li
+						a(href='eboard')
+							i.navi.fa.fa-comments-o#eboard 		
+					li
+						a(href='material')
+							i.navi.fa.fa-book#material 
+				a(href='#')#chtbtn.btn.btn-danger.near 中文					
+				a(href='#')#engbtn.btn.btn-warning.near English		
+				a(href='logout').btn.btn-danger.pull-right 
+					i.fa.fa-lock#logout
+
+				a(href='home').btn.btn-primary.pull-right 
+					i.fa.fa-user#home 
+
+					
+		
+	block scripts		
+	script(src='/vendor/jquery.min.js')
+	script(src='/vendor/jquery.form.js')
+	script(src='/vendor/bootstrap-modal.js')
+	script(src='/vendor/bootstrap-transition.js')
+	script(src='/js/views/home.js')	
+	script(src='/js/controllers/homeController.js')
+	script(src='/js/form-validators/accountValidator.js')	
+	script(src='/js/chlang.js')
+	

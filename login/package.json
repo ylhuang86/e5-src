@@ -1,0 +1,31 @@
+{
+	"name": "e5-src",
+	"version": "1.0.1",
+	"description": "Learing platform for education.Building on top of Node.js & MongoDb",
+	"author": {
+		"name": "育綸老師與她的快樂夥伴們:目",
+		"email": "sss950123@gmail.com"
+	},
+	"website":{
+		"url": ""
+	},
+	"repository": {
+		"type": "git",
+		"url": ""
+	},
+	"private": true,
+	"dependencies": {
+		"express": "3.0.6",
+		"body-parser": "^1.0.2",
+		"stylus": "0.31.0",
+		"jade": "0.27.7",
+		"mongodb": "1.2.7",
+		"moment" : "1.7.2",
+		"emailjs": "0.3.3",
+		"socket.io": "^1.0.6"		
+	},
+	"engines": {
+		"node": "0.8.14",
+		"npm":  "1.1.65"
+	}
+}

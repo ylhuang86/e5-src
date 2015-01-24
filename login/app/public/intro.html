@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+        <script src="js/jquery.min.js"></script>
+        <script src="js/jquery-ui.min.js"></script>
+        <script src="js/jquery.backstretch.min.js"></script>
+        <script src="js/templatemo_script.js"></script>
+    <head>
+        <meta charset="utf-8">
+        <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><![endif]-->
+        <title>E-Campus 6 | NCTU	</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        
+        <!-- Google Web Font Embed -->
+        <link rel="shortcut icon" href="http://cdn.flaticon.com/png/256/42912.png">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" >        
+        <link rel="stylesheet" href="css/templatemo_main.css">
+        <link rel="stylesheet" href="css/ihover.css" >
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    </head>
+	
+    <body>	
+	<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header" >
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" style="font-size:30px; color:#03a9f4;" href="#"><i class="fa "></i>E-Campus 6</a>
+        </div>	 
+		<div class="navbar-collapse collapse"  style="font-size:25px;">		
+        <ul class="nav navbar-nav">
+          <li><a href="eboard"><i class="fa fa-comments-o"></i><span  id="eboard"></span></a></li>
+          <li><a href="material"><i class="fa fa-book"></i><span  id="material"></span></a></li>          
+        </ul>		        	
+        <ul class="nav navbar-right" style="padding-top:6px" >        	
+	       	<a href="home" class="btn btn-primary btn-lg"><i class="fa fa-user"></i> <span  id="home"></span></a>        	
+        	<a href="logout" class="btn btn-danger btn-lg"><i class="fa fa-lock"></i> <span id="logout"></span></a>        	
+        </ul>		
+		</div>
+      </div>
+    </div>
+	
+        <div id="main-wrapper">
+            <!--[if lt IE 7]>
+                <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+            <![endif]-->
+            
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center templatemo-logo margin-top-20">
+                <h1 class="templatemo-site-title">
+                    <a href="#">E-Campus 6</a>
+                </h1>
+                <h3 class="templatemo-site-title">
+                	<span class="blue">教學平台</span>
+                </h3>
+            </div>
+
+            <div class="image-section">
+                <div class="image-container">
+                    <img src="images/zoom-bg-1.jpg" id="menu-img" class="main-img inactive" alt="Zoom HTML5 Template by templatemo.com">
+                    <img src="images/zoom-bg-2.jpg" id="products-img" class="inactive" alt="Product">
+                    <img src="images/zoom-bg-3.jpg" id="services-img"  class="inactive" alt="AboutUs">
+                    <img src="images/nodejs.png" id="about-img" class="inactive" alt="Nodejs">
+                    <img src="images/mongodb.png" id="contact-img" class="inactive" alt="MongoDB">
+                    <!-- <img src="images/zoom-bg-6.jpg" id="company-intro-img" class="main-img inactive" alt="Company Intro">
+                    <img src="images/zoom-bg-7.jpg" id="testimonials-img" class="main-img inactive" alt="Testimonials"> -->
+                </div>
+            </div>
+
+            <div class="container" >
+                <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-md-offset-2 col-lg-offset-2 templatemo-content-wrapper">
+                    <div class="templatemo-content">
+                        
+                        <section id="menu-section" class="active">
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 margin-bottom-20">
+                                    <a href="#products" class="change-section">
+                                        <div class="black-bg btn-menu">
+                                            <i class="fa fa-cubes"></i>
+                                            <h2>平台簡介</h2>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 margin-bottom-20">
+                                    <a href="#services" class="change-section">
+                                        <div class="black-bg btn-menu">
+                                            <i class="fa fa-users"></i>
+                                            <h2>製作團隊</h2>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 margin-bottom-20">
+                                    <a href="#about" class="change-section">
+                                        <div class="black-bg btn-menu">
+                                            <h2>使用語言：Node.js</h2>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 margin-bottom-20">
+                                    <a href="#contact" class="change-section">
+                                        <div class="black-bg btn-menu">
+                                            <h2>資料庫：MongoDB</h2>
+                                        </div>
+                                    </a>
+                                </div>
+                            
+                                <!-- <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 margin-bottom-20">
+                                    <a href="#company-intro" class="change-section">
+                                        <div class="black-bg btn-menu">
+                                            <h2>Introduction to Company</h2>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 margin-bottom-20">
+                                    <a href="#testimonials" class="change-section">
+                                        <div class="black-bg btn-menu">
+                                            <h2>Testimonials and Awards</h2>
+                                        </div>
+                                    </a>
+                                </div> -->
+                              
+                            </div>
+                        </section><!-- /.menu-section -->    
+                        <section id="products-section" class="inactive">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-12 col-lg-12 margin-bottom-20">
+                                    <div class="black-bg col-sm-12 col-md-12 col-lg-12">
+                                        <h2 style="text-align:center; color:darkblue;" class="alert alert-info">平台簡介</h2>
+                                        <p>在交通大學這麼現代化的學校裡，將課程資訊及教材放在網路上已經是一件稀鬆平常的事，我們學校也已經有了E3，然而，E3已經有一段歷史了，所以我們決定利用新的技術製作一個全新的線上教學平台，E6！</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row margin-top-20">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6  pull-right">
+                                    <a href="#menu" class="change-section">
+                                        <div class="black-bg btn-menu">
+                                            <h2>Back to menu</h2>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </section><!-- /.product-section -->    
+                        <section id="services-section" class="inactive" >
+                            <div class="row">
+                                <div class="col-sm-12 col-md-12 col-lg-12">
+                                    <div class="col-lg-12 black-bg" style="text-align:center;">
+                                        <h1 style="text-align:center; color:brown;" class="alert alert-danger">製作團隊</h1>
+                                        <hr>
+                                        <h2 style="text-align:center; color:darkblue;" class="alert alert-info">指導教授：</h2>
+                                        <div class="col-lg-6 person" >
+                                            <img class=img-thumbnail src="./images/黃育綸老師.jpg" height="300" width="300"><font size="5" color="white"></font>
+                                            
+                                        </div>
+                                        
+                                        <div class="col-lg-6 person" >
+                                            <h1 style="color:white">PROF.黃育綸</h1>
+                                            <h2 style="color:gray;">交大電機系 教授<br>嵌入式系統實驗室<br>特效績優導師<br></h2>
+                                            
+                                        </div>
+                                        
+                                        <h2 style="text-align:center; color:green;" class="alert alert-success col-lg-12 ">專題生們：</h2>
+                                        <div class="col-lg-6">
+                                        
+                                        <div class="person">
+                                            <div class="ih-item circle effect1"><a href="https://www.facebook.com/profile.php?id=100000246878028&fref=pb_other">
+        										<div class="spinner"></div>
+        											<div class="img"><img src="./images/林廷恩.jpg" height="64" width="64" alt="img"></div>
+           											<div class="info">
+		     											<div class="info-back">
+               											<h2>林廷恩</h2>
+               											<h3>登入系統</h3>
+             											</div>
+           											</div></a>
+                                            </div>
+                                        </div>
+                                        <div class="margin-bottom-20"></div>                                        
+                                        <div class="person">
+                                            <div class="ih-item circle effect1"><a href="https://www.facebook.com/profile.php?id=100000291186467&fref=pb_other">
+        										<div class="spinner"></div>
+        											<div class="img"><img src="./images/鄭竣元.jpg" height="64" width="64" alt="img"></div>
+           											<div class="info">
+		     											<div class="info-back">
+               											<h2>鄭竣元</h2>
+               											<h3>部落格</h3>
+             											</div>
+           											</div></a>
+                                            </div>
+                                        </div>
+                                        <div class="margin-bottom-20"></div>   
+                                        <div class="person">
+                                            <div class="ih-item circle effect1"><a href="https://www.facebook.com/profile.php?id=100003971132889&fref=pb_other">
+        										<div class="spinner"></div>
+        											<div class="img"><img src="./images/蔡尚頤.jpg" height="64" width="64" alt="img"></div>
+           											<div class="info">
+		     											<div class="info-back">
+               											<h2>蔡尚頤</h2>
+               											<h3>課堂教材</h3>
+             											</div>
+           											</div></a>
+                                            </div>
+                                        </div>
+										<div class="margin-bottom-20"></div>  
+                                        </div>        
+                                        <div class="col-lg-6">
+                                        
+                                        <div class="person">
+                                            <div class="ih-item circle effect1"><a href="https://www.facebook.com/XiaoLeLe.Sun?fref=pb_other">
+        										<div class="spinner"></div>
+        											<div class="img"><img src="./images/孫小樂.jpg" height="64" width="64" alt="img"></div>
+           											<div class="info">
+		     											<div class="info-back">
+               											<h2>孫小樂</h2>
+               											<h3>電子白板</h3>
+             											</div>
+           											</div></a>
+                                            </div>
+                                        </div>
+                                        <div class="margin-bottom-20"></div>                                        
+                                        <div class="person">
+                                            <div class="ih-item circle effect1"><a href="https://www.facebook.com/profile.php?id=1811832822&fref=pb_other">
+        										<div class="spinner"></div>
+        											<div class="img"><img src="./images/萬家宏.jpg" height="64" width="64" alt="img"></div>
+           											<div class="info">
+		     											<div class="info-back">
+               											<h2>萬家宏</h2>
+               											<h3>語言&加密</h3>
+             											</div>
+           											</div></a>
+                                            </div>
+                                        </div>
+                                        <div class="margin-bottom-20"></div>   
+                                        <div class="person">
+                                            <div class="ih-item circle effect1"><a href="https://www.facebook.com/profile.php?id=100001997725822&fref=pb_other">
+        										<div class="spinner"></div>
+        											<div class="img"><img src="./images/陳俊衞.jpg" height="64" width="64" alt="img"></div>
+           											<div class="info">
+		     											<div class="info-back">
+               											<h2>陳俊衞</h2>
+               											<h3>資料庫結構</h3>
+             											</div>
+           											</div></a>
+                                            </div>
+                                        </div>
+										<div class="margin-bottom-20"></div>  
+                                        </div>   
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row margin-top-20">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6  pull-right">
+                                    <a href="#menu" class="change-section">
+                                        <div class="black-bg btn-menu">
+                                            <h2>Back to menu</h2>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </section><!-- /.services-section -->    
+                        <section id="about-section" class="inactive">
+                            <div class="row">
+                                <div class="black-bg col-sm-12 col-md-12 col-lg-12">
+                                    <h2 style="text-align:center; color:darkblue;" class="alert alert-info">使用語言：Node.js</h2>
+                                    <p>Node.js 是 Ryan Dahl 基於 Google 的 V8 引擎於 2009 年釋出的一個 JavaScript 開發平台，主要聚焦於 Web 程式的開發，通常用被來寫網站。</p><p>Node.js® is a platform built on Chrome's JavaScript runtime for easily building fast, scalable network applications. Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient, perfect for data-intensive real-time applications that run across distributed devices.</p>
+                                </div>
+                            </div>
+                            <div class="row margin-top-20">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6  pull-right">
+                                    <a href="#menu" class="change-section">
+                                        <div class="black-bg btn-menu">
+                                            <h2>Back to menu</h2>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </section><!-- /.about-section -->    
+                        <section id="contact-section" class="inactive">
+                            <div class="row">
+                                <div class="black-bg col-sm-12 col-md-12 col-lg-12">
+                                    <h2 style="text-align:center; color:darkblue;" class="alert alert-info">資料庫：MongoDB</h2>
+                                    <p>MongoDB是一種檔案導向資料庫管理系統，由C++撰寫而成，以此來解決應用程式開發社群中的大量現實問題。2007年10月，MongoDB由10gen團隊所發展。2009年2月首度推出。MongoDB可以從開放原始碼來建構與安裝，更常見的是安裝binary檔，目前有Windows, Linux, OS X和Solaris版本。許多Linux套件管理系統現在已包含了MongoDB的套件，包括CentOS和Fedora, Debian和Ubuntu, Gentoo以及Arch Linux。同樣可從官方網站取得。MongoDB使用記憶體對映檔案, 32位元系統上限制大小為2GB的資料 (64-位元支援更大的資料)。MongoDB服務器只能用在小端序系統，雖然大部分公司會同時準備小端序和大端序系統。</p>                                    
+                                </div>
+                            </div>
+                            <div class="row margin-top-20">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6  pull-right">
+                                    <a href="#menu" class="change-section">
+                                        <div class="black-bg btn-menu">
+                                            <h2>Back to menu</h2>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </section><!-- /.contact-section -->    
+                        
+                    </div><!-- /.templatemo-content -->  
+                </div><!-- /.templatemo-content-wrapper --> 
+            </div><!-- /.row --> 
+
+            <div class="row ">                
+                <div class="col-lg-12 footer">
+                    <div class="col-lg-12">
+                    <p class="footer-text">Copyright &copy; 2014 E6 Production Group <!-- Credit: www.templatemo.com --></p>             
+                    </div>
+                </div><!-- /.footer --> 
+            </div>
+
+		</div><!-- /#main-wrapper -->        
+        <div id="preloader">
+            <div id="status">&nbsp;</div>
+        </div><!-- /#preloader -->
+		<script src="js/chlang.js"></script>			
+    </body> 
+</html>
